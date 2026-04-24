@@ -450,7 +450,7 @@ classes:
         description: >-
           The name of the parameter in the deployment configuration. 
           For Helm deployments, this is the dot notation for the matching element in the `values.yaml` file. This follows the same naming convention you would use with the `--set` command line argument with the `helm install` command. 
-          For compose deployments, this is the name of the environment variable to set.
+          For compose deployments, this names an environment variable whose value is supplied during Compose variable interpolation (e.g. `MY_ENV: ${MY_ENV}`).
         rank: 10
         range: string
         required: true
