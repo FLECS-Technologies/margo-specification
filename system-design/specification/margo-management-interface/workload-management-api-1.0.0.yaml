@@ -159,12 +159,6 @@ paths:
           schema:
             type: string
           description: Content-addressable digest of the bundle archive. MUST conform to the 'digest' attribute in the Digest Specification and MUST equal the digest computed over the exact sequence of bytes (per Exact Bytes Rule) in the HTTP 200 OK response body. If the server cannot produce content whose digest matches this value it MUST return 404 Not Found.
-        - in: header
-          name: If-None-Match
-          required: false
-          schema:
-            type: string
-          description: Quoted ETag (same as digest) previously returned for this bundle.
       responses:
         '200':
           description: Bundle archive (immutable)
@@ -183,8 +177,6 @@ paths:
                 type: string
                 format: binary
                 description: Gzip-compressed tar containing one YAML file per deployment.
-        '304':
-          description: Representation not modified
         '404':
           description: Bundle not found for the given digest
         '400':
@@ -270,13 +262,6 @@ paths:
             type: string
           description: >
             Content-addressable digest of the ApplicationDeployment YAML file. MUST conform to the Digest Specification and MUST equal the digest computed over the exact sequence of bytes (per Exact Bytes Rule) in the HTTP 200 OK response body. If the server cannot produce content whose digest matches this value it MUST return 404 Not Found.
-        - name: If-None-Match
-          in: header
-          required: false
-          schema:
-            type: string
-          description: >
-            Optional ETag for caching. The ETag is returned to the client from the /deployments endpoint, it is the digest of the state manifest.
         - name: Accept-Encoding
           in: header
           required: false
